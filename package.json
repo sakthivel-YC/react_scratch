@@ -3,8 +3,40 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "yarn lint && yarn test && webpack ",
+    "dev": "yarn lint --fix && yarn test && webpack ",
+    "build:watch": "yarn build --watch",
+    "test": "yarn lint && yarn jest",
+    "test:watch": "jest --watchAll",
+    "lint": "standard",
+    "start": "webpack-dev-server"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": [
+      "jest"
+    ],
+    "ignore": [
+      "dist/**"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -13,18 +45,28 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@types/jest": "^27.0.3",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "add": "^2.0.6",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "dotenv": "^10.0.0",
+    "enzyme": "^3.11.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.3.1",
+    "jest-enzyme": "^7.1.2",
     "node-sass": "^6.0.1",
-    "sass-loader": "^12.3.0",
+    "standard": "^16.0.4",
     "style-loader": "^3.3.1",
     "webpack": "^5.64.1",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0"
   },
   "dependencies": {
+    "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
 }
