@@ -1,22 +1,22 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-require('dotenv').config();
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+require('dotenv').config()
 
-const { PORT: port, NODE_ENV: mode } = process.env;
+const { PORT: port, NODE_ENV: mode } = process.env
 const devServer = {
-  port,
-};
+  port
+}
 
 module.exports = {
   mode,
   devServer,
   entry: {
-    main: path.resolve(__dirname, 'src/index.js'),
+    main: path.resolve(__dirname, 'src/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
-    clean: true,
+    clean: true
   },
 
   // plugins
@@ -24,8 +24,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Hello React!',
       filename: 'index.html',
-      template: 'src/index.html',
-    }),
+      template: 'src/index.html'
+    })
   ],
 
   // loaders
@@ -37,9 +37,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
-        },
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -47,16 +47,16 @@ module.exports = {
           {
             loader: 'style-loader',
             options: {
-              injectType: 'linkTag',
-            },
+              injectType: 'linkTag'
+            }
           },
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[contenthash].[ext]',
-            },
-          },
-        ],
+              name: '[path][name].[contenthash].[ext]'
+            }
+          }
+        ]
       },
 
       {
@@ -64,10 +64,10 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[ext]',
-          },
-        },
-      },
-    ],
-  },
-};
+            name: '[path][name].[ext]'
+          }
+        }
+      }
+    ]
+  }
+}

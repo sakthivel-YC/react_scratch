@@ -6,7 +6,7 @@
     "build": "yarn lint && yarn test && webpack ",
     "dev": "yarn lint --fix && yarn test && webpack ",
     "build:watch": "yarn build --watch",
-    "test": "yarn lint && yarn jest",
+    "test": "yarn lint --fix && yarn jest",
     "test:watch": "jest --watchAll",
     "lint": "standard",
     "start": "webpack-dev-server"
